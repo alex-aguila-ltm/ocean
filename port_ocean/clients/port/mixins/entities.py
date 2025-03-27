@@ -100,6 +100,11 @@ class EntityClientMixin:
         # We return None to ignore the entity later in the delete process
         if result_entity.is_using_search_identifier:
             return None
+        
+        logger.info(
+            f"{'Validated' if validation_only else 'Upserted'} entity: {entity.identifier} of blueprint: {entity.blueprint}"
+        )
+
         return self._reduce_entity(result_entity)
 
     @staticmethod
